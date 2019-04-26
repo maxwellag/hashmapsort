@@ -8,32 +8,32 @@ public class HashMapSort {
 
     public static LinkedList<Integer> hashMapSortList(LinkedList<Integer> toSort){
         LinkedList<Integer> sorted = new LinkedList<>();
-        HashMap<Integer, LinkedList<Integer>> map = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         Integer max = toSort.getFirst();
         Integer min = max;
         for(Integer i: toSort){ // Find min and max, while also inserting each
-            LinkedList<Integer> l = map.get(i);
-            if(l == null){
-                l = new LinkedList<Integer>();
-                map.put(i, l);
+            if(map.get(i) == null){
+                map.put(i, 1); // add one integer with value i to the map
             }
-            l.add(i);
+            else{
+                map.replace(i, map.get(i)+1); // increment the quanitity of integer i seen
+            }
             if(i > max)
                 max = i;
             if(i < min)
                 min = i;
         }
         for(Integer i = min; i<max+1; i++){
-            LinkedList<Integer> toAdd = map.get(i);
-            if(toAdd == null || toAdd.size()==0)
+            int quanitityToAdd = -1;
+            if(map.get(i) != null){
+                quanitityToAdd = map.get(i);
+            }
+            if(quanitityToAdd == 0) // Only add the ones that
                 continue;
-            Integer addThis = toAdd.getFirst();
-            while(addThis != null){
-                sorted.add(addThis);
-                toAdd.removeFirst();
-                if(toAdd.size() > 0)
-                    addThis = toAdd.getFirst();
-                else break;
+            else{
+                while(quanitityToAdd-- > 0){
+                    sorted.add(i);
+                }
             }
         }
         return sorted;

@@ -24,8 +24,8 @@ public class HashMapSortTests {
 
     @Test
     public void testTwo(){
-        runNTestsAndComputeAverageRunningTime(1000, 1000, 100, true);
-        runNTestsAndComputeAverageRunningTime(1000, 1000, 100, false);
+        runNTestsAndComputeAverageRunningTime(100, 1000, 100, true);
+        runNTestsAndComputeAverageRunningTime(100, 1000, 100, false);
     }
     @Test
     public void testThree(){
